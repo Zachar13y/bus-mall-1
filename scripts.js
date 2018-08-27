@@ -38,7 +38,7 @@ function generate3Images() {
     progressBar.removeAttribute('class', 'hide');
     progressBar.setAttribute('class', 'progressBar');
 
-    if(clicks < 16) {
+    if(clicks < 5) {
         var leftImage = Math.floor(Math.random()*images.length);
         var centerImage = Math.floor(Math.random()*images.length);
         var rightImage = Math.floor(Math.random()*images.length);
@@ -102,8 +102,12 @@ function showResults() {
     results.appendChild(list);
     
     var listItem, createImage, clickResults;
-
+    images.sort(function(a,b) {
+        return b - a;
+    });
+    
     for(var imageIndex = 0; imageIndex < images.length; imageIndex++){
+        // if(!images[imageIndex].imageClickTotal == 0) {
         listItem = document.createElement('li');
         createImage = document.createElement('img');
         createImage.setAttribute('src', 'images/' + images[imageIndex].filename);
@@ -112,6 +116,8 @@ function showResults() {
         listItem.appendChild(clickResults);
         listItem.appendChild(createImage);
         list.appendChild(listItem);
+
+        // }
     }
 }
 
